@@ -1,14 +1,29 @@
 import { createRouter, RouteRecordRaw, createWebHashHistory } from 'vue-router'
+import AppLayout from '@/layout/AppLayout.vue'
+import productRouter from './modules/product'
 
 // RouteRecordRaw 类型声明
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('../views/home/HomeIndex.vue')
+    component: AppLayout,
+    meta: {
+      requiresAuth: true
+    },
+    children: [
+      {
+        path: 'home', // 默认子路由
+        name: 'home',
+        component: () => import('@/views/home/index.vue'),
+        meta: { title: '首页' }
+      },
+      productRouter
+    ]
   },
   {
     path: '/login',
-    component: () => import('../views/login/LoginIndex.vue')
+    name: 'login',
+    component: () => import('@/views/login/index.vue')
   }
 ]
 
