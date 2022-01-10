@@ -1,5 +1,5 @@
 <template>
-  <el-breadcrumb separator-class="el-icon-arrow-right">
+  <el-breadcrumb>
     <el-breadcrumb-item
       v-for="item in routes"
       :key="item.path"

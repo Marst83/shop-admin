@@ -19,33 +19,24 @@
         <el-input
           v-model="user.account"
           placeholder="请输入用户名"
-        >
-          <template #prefix>
-            <i class="el-input__icon el-icon-user" />
-          </template>
-        </el-input>
+          :prefix-icon="User"
+        />
       </el-form-item>
       <el-form-item prop="pwd">
         <el-input
           v-model="user.pwd"
           type="password"
           placeholder="请输入密码"
-        >
-          <template #prefix>
-            <i class="el-input__icon el-icon-lock" />
-          </template>
-        </el-input>
+          :prefix-icon="Lock"
+        />
       </el-form-item>
       <el-form-item prop="imgcode">
         <div class="imgcode-wrap">
           <el-input
             v-model="user.imgcode"
             placeholder="请输入验证码"
-          >
-            <template #prefix>
-              <i class="el-input__icon el-icon-key" />
-            </template>
-          </el-input>
+            :prefix-icon="Key"
+          />
           <img
             class="imgcode"
             alt="验证码"
@@ -72,6 +63,7 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getCaptcha, login } from '@/api/common'
+import { User, Key, Lock } from '@element-plus/icons-vue'
 import type { IElForm, IFormRule } from '@/types/element-plus'
 import { store } from '@/store'
 import { ElMessage } from 'element-plus'
@@ -81,8 +73,8 @@ const route = useRoute()
 const form = ref<IElForm | null>(null)
 const captchaSrc = ref('')
 const user = reactive({
-  account: 'admin',
-  pwd: '123456',
+  account: 'zce',
+  pwd: 'wanglei',
   imgcode: ''
 })
 const loading = ref(false)
@@ -137,7 +129,7 @@ const handleSubmit = async () => {
   store.commit('setMenus', data.menus)
 
   // 跳转回原来页面
-  let redirect = route.query.redirect
+  let redirect = route.query.redirect || '/'
   if (typeof redirect !== 'string') {
     redirect = '/'
   }

@@ -11,7 +11,7 @@ const routes: RouteRecordRaw = {
       path: 'product_list',
       name: 'product-list',
       component: () => import('@/views/product/list/index.vue'),
-      meta: { // 自定义路由元数据
+      meta: {
         title: '商品列表'
       }
     },

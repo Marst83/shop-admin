@@ -1,4 +1,4 @@
-import ElementPlus from 'element-plus'
+import ElementPlus from '../../node_modules/element-plus'
 import 'element-plus/dist/index.css'
 import { App } from 'vue'
 

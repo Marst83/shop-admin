@@ -5,7 +5,6 @@ import { IUserInfo, IMenu } from '@/api/types/common'
 const state = {
   isCollapse: false,
   user: null as ({ token: string } & IUserInfo) | null,
-  // user: getItem<{ token: string } & IUserInfo>(USER),
   menus: [] as IMenu[]
 }
 

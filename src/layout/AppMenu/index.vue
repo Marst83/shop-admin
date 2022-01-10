@@ -13,29 +13,57 @@
       <el-icon><Menu /></el-icon>
       <span>{{ title }}</span>
     </el-menu-item>
-    <el-sub-menu>
+    <el-sub-menu index="1">
       <template #title>
-        <el-icon><Location /></el-icon>
+        <el-icon><Goods /></el-icon>
         <span>商品</span>
       </template>
       <el-menu-item index="/product/product_list">
-        <i class="el-icon-menu" />
         <template #title>
-          商品列表
+          商品管理
+        </template>
+      </el-menu-item>
+      <el-menu-item index="/product/product_classify">
+        <template #title>
+          商品分类
         </template>
       </el-menu-item>
       <el-menu-item index="/product/product_attr">
-        <i class="el-icon-menu" />
         <template #title>
           商品规格
         </template>
       </el-menu-item>
+      <el-menu-item index="/product/product_reply">
+        <template #title>
+          商品评论
+        </template>
+      </el-menu-item>
     </el-sub-menu>
+    <el-sub-menu index="2">
+      <template #title>
+        <el-icon><shopping-cart /></el-icon>
+        <span>订单</span>
+      </template>
+      <el-menu-item index="/order/list">
+        <template #title>
+          订单管理
+        </template>
+      </el-menu-item>
+      <el-menu-item index="/order/offline">
+        <template #title>
+          收银订单
+        </template>
+      </el-menu-item>
+    </el-sub-menu>
+    <el-menu-item index="/media">
+      <el-icon><Menu /></el-icon>
+      <span>媒体</span>
+    </el-menu-item>
   </el-menu>
 </template>
 
 <script lang="ts" setup>
-import { Menu, Location } from '@element-plus/icons-vue'
+import { Menu, Goods, ShoppingCart } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import { useStore } from '@/store'
 
