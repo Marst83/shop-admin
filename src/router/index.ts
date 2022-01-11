@@ -12,6 +12,10 @@ import { store } from '@/store'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    redirect: '/admin/home'
+  },
+  {
+    path: '/admin',
     component: AppLayout,
     meta: {
       requiresAuth: true
@@ -30,7 +34,7 @@ const routes: RouteRecordRaw[] = [
     ]
   },
   {
-    path: '/login',
+    path: '/admin/login',
     name: 'login',
     component: () => import('@/views/login/index.vue')
   }
@@ -43,13 +47,15 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   nprogress.start() // 开始加载进度条
-  if (to.meta.requiresAuth && !store.state.user) {
+  if (to.meta.requiresAuth) {
     // 此路由需要授权，请检查是否已登录
     // 如果没有，则重定向到登录页面
-    return {
-      path: '/login',
-      // 保存我们所在的位置，以便以后再来
-      query: { redirect: to.fullPath }
+    if (!store.state.user) {
+      return {
+        path: '/admin/login',
+        // 保存我们所在的位置，以便以后再来
+        query: { redirect: to.fullPath }
+      }
     }
   }
 })

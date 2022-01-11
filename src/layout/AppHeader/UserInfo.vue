@@ -38,6 +38,7 @@ const handleLogou = () => {
     await logout()
     // 清除用户登录信息
     store.commit('setUser', null)
+    store.commit('setMenus', null)
     ElMessage({
       type: 'success',
       message: '退出成功!'

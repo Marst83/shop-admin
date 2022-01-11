@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { store } from '@/store'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import router from '@/router/'
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_BASEURL
@@ -23,6 +24,8 @@ request.interceptors.request.use(
   }
 )
 
+// 控制登录过期的锁
+let isRefreshing = false
 // 响应拦截器
 request.interceptors.response.use(
   response => {
@@ -33,7 +36,30 @@ request.interceptors.response.use(
     if (!status || status === 200) {
       return response
     }
-    // 处理 Token 过期
+    // 登录过期
+    if (status === 410000) {
+      if (isRefreshing) return Promise.reject(response)
+      isRefreshing = true
+      ElMessageBox.confirm('您的登录已过期，您可以取消停留在此页面，或确认重新登录', '登录过期', {
+        confirmButtonText: '确认',
+        cancelButtonText: '取消'
+      }).then(
+        () => {
+          // 清除登录状态并跳转到登录页
+          store.commit('setUser', null)
+          router.push({
+            name: 'login',
+            query: {
+              redirect: router.currentRoute.value.fullPath
+            }
+          })
+        }
+      ).finally(() => {
+        isRefreshing = false
+      })
+
+      return Promise.reject(response)
+    }
 
     // 其它错误给出提示即可，比如 400 参数错误之类的
     ElMessage({
