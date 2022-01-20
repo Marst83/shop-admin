@@ -9,13 +9,19 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@types/sortablejs": "^1.10.7",
     "axios": "^0.24.0",
     "element-plus": "^1.3.0-beta.1",
     "nprogress": "^0.2.0",
+    "sortablejs": "^1.14.0",
     "vite-plugin-eslint": "^1.3.0",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vxe-table": "^4.1.19",
+    "wangeditor": "^4.7.11",
+    "xe-utils": "^3.5.2",
+    "xlsx": "^0.17.5"
   },
   "devDependencies": {
     "@types/node": "^17.0.8",

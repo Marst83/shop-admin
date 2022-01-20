@@ -81,6 +81,8 @@ request.interceptors.response.use(
 
 export default <T = any>(config: AxiosRequestConfig) => {
   return request(config).then(res => {
+    // eslint-disable-next-line no-debugger
+    debugger
     return (res.data.data || res.data) as T
   })
 }

@@ -38,6 +38,14 @@ const routes: RouteRecordRaw = {
       meta: {
         title: '商品评论'
       }
+    },
+    {
+      path: 'add_product',
+      name: 'add_product',
+      component: () => import('@/views/product/add/index.vue'),
+      meta: {
+        title: '商品评论'
+      }
     }
   ]
 }

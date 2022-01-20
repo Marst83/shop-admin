@@ -36,13 +36,13 @@ const handleLogou = () => {
   }).then(async () => {
     // 确认发出退出请求
     await logout()
-    // 清除用户登录信息
-    store.commit('setUser', null)
-    store.commit('setMenus', null)
     ElMessage({
       type: 'success',
       message: '退出成功!'
     })
+    // 清除用户登录信息
+    store.commit('setUser', null)
+    store.commit('setMenus', null)
     // 跳转到登录页
     router.push({
       name: 'login'

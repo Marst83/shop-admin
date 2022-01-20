@@ -1,15 +1,15 @@
 import { RouteRecordRaw, RouterView } from 'vue-router'
 
 const routes: RouteRecordRaw = {
-  path: 'permission',
-  name: 'permission',
+  path: 'setting',
+  name: '权限管理',
   component: RouterView,
   meta: {
     title: '权限管理'
   },
   children: [
     {
-      path: 'role',
+      path: 'system_role/index',
       name: 'permission-role',
       component: () => import('@/views/permission/role/index.vue'),
       meta: {
@@ -17,7 +17,7 @@ const routes: RouteRecordRaw = {
       }
     },
     {
-      path: 'admin',
+      path: 'system_admin/index',
       name: 'permission-admin',
       component: () => import('@/views/permission/admin/index.vue'),
       meta: {
@@ -25,7 +25,7 @@ const routes: RouteRecordRaw = {
       }
     },
     {
-      path: 'rule',
+      path: 'system_menus/index',
       name: 'permission-rule',
       component: () => import('@/views/permission/rule/index.vue'),
       meta: {
